@@ -14,14 +14,17 @@ services:
       - "80:80/tcp"
       - "443:443/tcp"
     environment:
-      TZ: 'America/Chicago'
-      # WEBPASSWORD: 'set a secure password here or it will be random'
+      TZ: 'America/Los_Angelos'
+      #WEBPASSWORD: 'some_password'
     # Volumes store your data between container upgrades
     volumes:
       - './etc-pihole/:/etc/pihole/'
       - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
       # run `touch ./var-log/pihole.log` first unless you like errors
-      # - './var-log/pihole.log:/var/log/pihole.log'
+      - './var-log/pihole.log:/var/log/pihole.log'
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
     # Recommended but not required (DHCP needs NET_ADMIN)
     #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
     cap_add:
